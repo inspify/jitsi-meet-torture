@@ -35,7 +35,7 @@ public class MalleusJitsificus
      * The video file to use as input for the first participant (the sender).
      */
     private static final String INPUT_VIDEO_FILE
-        = "resources/FourPeople_1280x720_30.y4m";
+        = "/home/seluser/resources/FourPeople_1280x720_60.y4m";
 
     public static final String CONFERENCES_PNAME
         = "org.jitsi.malleus.conferences";
@@ -96,8 +96,9 @@ public class MalleusJitsificus
         }
 
         String enableP2pStr = System.getProperty(ENABLE_P2P_PNAME);
-        boolean enableP2p
-            = enableP2pStr == null || Boolean.parseBoolean(enableP2pStr);
+//        boolean enableP2p
+//            = enableP2pStr == null || Boolean.parseBoolean(enableP2pStr);
+        boolean enableP2p = false;
 
         // Use one thread per conference.
         context.getCurrentXmlTest().getSuite()
@@ -119,14 +120,14 @@ public class MalleusJitsificus
             String roomName = roomNamePrefix + i;
             JitsiMeetUrl url
                 = participants.getJitsiMeetUrl()
-                .setRoomName(roomName)
+                .setRoomName(roomName);
                 // XXX I don't remember if/why these are needed.
-                .appendConfig("config.p2p.useStunTurn=true")
-                .appendConfig("config.disable1On1Mode=false")
-                .appendConfig("config.testing.noAutoPlayVideo=true")
-                .appendConfig("config.pcStatsInterval=10000")
-
-                .appendConfig("config.p2p.enabled=" + (enableP2p ? "true" : "false"));
+//                .appendConfig("config.p2p.useStunTurn=true")
+//                .appendConfig("config.disable1On1Mode=false")
+//                .appendConfig("config.testing.noAutoPlayVideo=true")
+//                .appendConfig("config.pcStatsInterval=10000")
+//
+//                .appendConfig("config.p2p.enabled=" + (enableP2p ? "true" : "false"));
             ret[i] = new Object[] { url, numParticipants, timeoutMs, numSenders, numAudioSenders, regions};
         }
 
@@ -271,6 +272,6 @@ public class MalleusJitsificus
     public boolean skipTestByDefault()
     {
         // Skip by default.
-        return true;
+        return false;
     }
 }

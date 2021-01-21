@@ -136,7 +136,7 @@ mvn \
 -DallowInsecureCerts=$ALLOW_INSECURE_CERTS \
 -Djitsi-meet.tests.toRun=MalleusJitsificus \
 -Dwdm.gitHubTokenName=jitsi-jenkins \
--Dremote.resource.path=/usr/share/jitsi-meet-torture \
+-Dremote.resource.path=/home/seluser \
 -Djitsi-meet.instance.url=$INSTANCE_URL \
 -Djitsi-meet.isRemote=true \
 -Dchrome.disable.nosanbox=true \

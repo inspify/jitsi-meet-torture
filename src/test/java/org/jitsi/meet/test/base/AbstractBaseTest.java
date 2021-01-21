@@ -190,7 +190,7 @@ public abstract class AbstractBaseTest<P extends Participant>
 
     /**
      * Merge torture test config with the TestNG suite parameters. TestNG
-     * parameters can be declared in <parameter> tags in testng.xml file which
+     * parameters can be declared in <parameter> tags in testng-jitsimeet.xml file which
      * describes the test Suite.
      *
      * @param config - The torture tests config initialized by
