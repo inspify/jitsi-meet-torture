@@ -29,10 +29,14 @@ import org.openqa.selenium.safari.*;
 import java.io.*;
 import java.net.*;
 import java.nio.channels.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.*;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.*;
+import org.apache.commons.io.*;
 
 /**
  * Creates web specific participant.
@@ -217,13 +221,14 @@ public class WebParticipantFactory
             ops.addArguments("use-fake-ui-for-media-stream");
             ops.addArguments("use-fake-device-for-media-stream");
             ops.addArguments("disable-plugins");
-            ops.addArguments("mute-audio");
+            ops.addArguments("allow-file-access");
+//            ops.addArguments("mute-audio");
             ops.addArguments("disable-infobars");
             // Since chrome v66 there are new autoplay policies, which broke
             // shared video tests, disable no-user-gesture to make it work
             ops.addArguments("autoplay-policy=no-user-gesture-required");
 
-            ops.addArguments("auto-select-desktop-capture-source=Your Entire screen");
+//            ops.addArguments("auto-select-desktop-capture-source=Your Entire screen");
 
             ops.setCapability(CapabilityType.LOGGING_PREFS, logPrefs);
             ops.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, options.allowsInsecureCerts());
@@ -246,7 +251,7 @@ public class WebParticipantFactory
             // which leaves the browser opened and selenium hang forever.
             // There are reports that in older version crashes like that will
             // fallback to software graphics, we try to disable gpu for now
-            ops.addArguments("disable-gpu");
+//            ops.addArguments("disable-gpu");
 
             if (browserBinaryAPath != null
                     && (browserBinaryAPath.exists() || isRemote))
@@ -278,16 +283,30 @@ public class WebParticipantFactory
                 = getFile(options, options.getFakeStreamAudioFile());
             if (fakeStreamAudioFile != null)
             {
-                ops.addArguments("use-file-for-fake-audio-capture="
-                        + fakeStreamAudioFile.getAbsolutePath());
+//                try {
+//                    Path src = Paths.get("/home/seluser/resources/fakeAudioStream.wav");
+//                    Path dest = Paths.get("/home/seluser/fakeAudioStream.wav");
+//                    FileUtils.copyFile(src.toFile(),dest.toFile());
+                    ops.addArguments("use-file-for-fake-audio-capture="
+                            + fakeStreamAudioFile.getAbsolutePath());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
 
             File fakeStreamVideoFile
                 = getFile(options, options.getFakeStreamVideoFile());
             if (fakeStreamVideoFile != null)
             {
-                ops.addArguments("use-file-for-fake-video-capture="
-                        + fakeStreamVideoFile.getAbsolutePath());
+//                try {
+//                    Path src = Paths.get("/home/seluser/resources/students_cif.y4m");
+//                    Path dest = Paths.get("/home/seluser/students_cif.y4m");
+//                    FileUtils.copyFile(src.toFile(),dest.toFile());
+                    ops.addArguments("use-file-for-fake-video-capture="
+                            + fakeStreamVideoFile.getAbsolutePath());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
             }
 
             //ops.addArguments("vmodule=\"*media/*=3,*turn*=3\"");

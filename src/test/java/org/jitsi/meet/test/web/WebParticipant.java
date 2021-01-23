@@ -40,24 +40,24 @@ public class WebParticipant extends Participant<WebDriver>
     /**
      * Default config for Web participants.
      */
-    private static final String DEFAULT_CONFIG
-        = "config.requireDisplayName=false"
-            + "&config.debug=true"
-            + "&config.testing.testMode=true"
-            + "&config.disableAEC=true"
-            + "&config.disableNS=true"
-            + "&config.enableTalkWhileMuted=false"
-            + "&config.callStatsID=false"
-            + "&config.alwaysVisibleToolbar=true"
-            + "&config.p2p.enabled=false"
-            + "&config.p2p.useStunTurn=false"
-            + "&config.pcStatsInterval=1500"
-            + "&config.prejoinPageEnabled=false"
-            + "&config.gatherStats=true"
-            + "&config.disable1On1Mode=true"
-            + "&config.analytics.disabled=true"
-            + "&interfaceConfig.SHOW_CHROME_EXTENSION_BANNER=false"
-            + "&interfaceConfig.DISABLE_FOCUS_INDICATOR=true";
+    private static final String DEFAULT_CONFIG = "";
+//        = "config.requireDisplayName=false"
+//            + "&config.debug=true"
+//            + "&config.testing.testMode=true"
+//            + "&config.disableAEC=true"
+//            + "&config.disableNS=true"
+//            + "&config.enableTalkWhileMuted=false"
+//            + "&config.callStatsID=false"
+//            + "&config.alwaysVisibleToolbar=true"
+//            + "&config.p2p.enabled=false"
+//            + "&config.p2p.useStunTurn=false"
+//            + "&config.pcStatsInterval=1500"
+//            + "&config.prejoinPageEnabled=false"
+//            + "&config.gatherStats=true"
+//            + "&config.disable1On1Mode=true"
+//            + "&config.analytics.disabled=true"
+//            + "&interfaceConfig.SHOW_CHROME_EXTENSION_BANNER=false"
+//            + "&interfaceConfig.DISABLE_FOCUS_INDICATOR=true";
 
     /**
      * The javascript code which returns {@code true} if we are joined in
@@ -146,56 +146,56 @@ public class WebParticipant extends Participant<WebDriver>
                 + "will skip it and continue:" + ex.getMessage());
         }
 
-        if (conferenceUrl.getIframeToNavigateTo() != null)
-        {
-            // let's wait for loading and switch to that iframe so we can continue
-            // with regular tests
-            WebDriverWait wait = new WebDriverWait(driver, 10);
-            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
-                By.id(conferenceUrl.getIframeToNavigateTo())));
-        }
+//        if (conferenceUrl.getIframeToNavigateTo() != null)
+//        {
+//            // let's wait for loading and switch to that iframe so we can continue
+//            // with regular tests
+//            WebDriverWait wait = new WebDriverWait(driver, 10);
+//            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(
+//                By.id(conferenceUrl.getIframeToNavigateTo())));
+//        }
 
-        MeetUtils.waitForPageToLoad(driver);
+//        MeetUtils.waitForPageToLoad(driver);
 
         // disables animations
-        executeScript("try { jQuery.fx.off = true; } catch(e) {}");
-
-        executeScript("APP.UI.dockToolbar(true);");
-
-        // disable keyframe animations (.fadeIn and .fadeOut classes)
-        executeScript("$('<style>.notransition * { "
-            + "animation-duration: 0s !important; "
-            + "-webkit-animation-duration: 0s !important; transition:none; }"
-            + " </style>').appendTo(document.head);");
-        executeScript("$('body').toggleClass('notransition');");
+//        executeScript("try { jQuery.fx.off = true; } catch(e) {}");
+//
+//        executeScript("APP.UI.dockToolbar(true);");
+//
+//        // disable keyframe animations (.fadeIn and .fadeOut classes)
+//        executeScript("$('<style>.notransition * { "
+//            + "animation-duration: 0s !important; "
+//            + "-webkit-animation-duration: 0s !important; transition:none; }"
+//            + " </style>').appendTo(document.head);");
+//        executeScript("$('body').toggleClass('notransition');");
 
         // disable the blur effect in firefox as it has some performance issues
-        if (this.type.isFirefox())
-        {
-            executeScript(
-                "try { var blur "
-                    + "= document.querySelector('.video_blurred_container'); "
-                    + "if (blur) { "
-                    + "document.querySelector('.video_blurred_container')"
-                    + ".style.display = 'none' "
-                    + "} } catch(e) {}");
-        }
-
-        if ("false".equals(conferenceUrl.getFragmentParam("config.callStatsID")))
-        {
-            // Hack-in disabling of callstats (old versions of jitsi-meet don't
-            // handle URL parameters)
-            executeScript("config.callStatsID=false;");
-        }
-
-        String version = TestUtils.executeScriptAndReturnString(driver,
-            "return JitsiMeetJS.version;");
-        TestUtils.print(name + " lib-jitsi-meet version: " + version
-            + (driver instanceof RemoteWebDriver ?
-                " sessionID: "
-                    + ((RemoteWebDriver)driver).getSessionId() : ""));
-
-        executeScript("document.title='" + name + "'");
+//        if (this.type.isFirefox())
+//        {
+//            executeScript(
+//                "try { var blur "
+//                    + "= document.querySelector('.video_blurred_container'); "
+//                    + "if (blur) { "
+//                    + "document.querySelector('.video_blurred_container')"
+//                    + ".style.display = 'none' "
+//                    + "} } catch(e) {}");
+//        }
+//
+//        if ("false".equals(conferenceUrl.getFragmentParam("config.callStatsID")))
+//        {
+//            // Hack-in disabling of callstats (old versions of jitsi-meet don't
+//            // handle URL parameters)
+//            executeScript("config.callStatsID=false;");
+//        }
+//
+//        String version = TestUtils.executeScriptAndReturnString(driver,
+//            "return JitsiMeetJS.version;");
+//        TestUtils.print(name + " lib-jitsi-meet version: " + version
+//            + (driver instanceof RemoteWebDriver ?
+//                " sessionID: "
+//                    + ((RemoteWebDriver)driver).getSessionId() : ""));
+//
+//        executeScript("document.title='" + name + "'");
     }
 
     /**

@@ -227,6 +227,7 @@ public abstract class ParticipantHelper<P extends Participant>
         JitsiMeetUrl url = new JitsiMeetUrl();
 
         String serverUrl = config.getProperty(ParticipantOptions.JITSI_MEET_URL_PROP);
+        System.out.print("Orig URL: " + serverUrl);
         if (serverUrl == null)
         {
             throw new RuntimeException(
@@ -235,6 +236,7 @@ public abstract class ParticipantHelper<P extends Participant>
         }
 
         url.setServerUrl(serverUrl);
+        System.out.print("Jitsi Server URL: " + url.toString());
         return url;
     }
 

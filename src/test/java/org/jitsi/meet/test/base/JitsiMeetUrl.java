@@ -175,7 +175,7 @@ public class JitsiMeetUrl
         {
             JitsiMeetUrl clone = (JitsiMeetUrl) super.clone();
 
-            clone.fragmentParams = new HashMap<>(this.fragmentParams);
+//            clone.fragmentParams = new HashMap<>(this.fragmentParams);
 
             return clone;
 
@@ -279,14 +279,14 @@ public class JitsiMeetUrl
      */
     public void setServerUrl(String serverUrl)
     {
-        if (serverUrl != null && serverUrl.endsWith("/"))
-        {
-            this.serverUrl = serverUrl.substring(0, serverUrl.length() -1);
-        }
-        else
-        {
+//        if (serverUrl != null && serverUrl.endsWith("/"))
+//        {
+//            this.serverUrl = serverUrl.substring(0, serverUrl.length() -1);
+//        }
+//        else
+//        {
             this.serverUrl = serverUrl;
-        }
+//        }
     }
 
     /**
@@ -298,31 +298,31 @@ public class JitsiMeetUrl
     @Override
     public String toString()
     {
-        String url = serverUrl + "/" + roomName;
-
-        if (StringUtils.isNotBlank(roomParameters))
-        {
-            url += "?" + roomParameters;
-        }
+//        String url = serverUrl + "/" + roomName;
+//
+//        if (StringUtils.isNotBlank(roomParameters))
+//        {
+//            url += "?" + roomParameters;
+//        }
 
         boolean appendHash = true;
-        StringBuilder urlBuilder = new StringBuilder(url);
-        for (Map.Entry<String, String> entry : fragmentParams.entrySet())
-        {
-            if (appendHash)
-            {
-                urlBuilder.append("#");
-                appendHash = false;
-            }
-            else
-            {
-                urlBuilder.append("&");
-            }
-
-            urlBuilder.append(entry.getKey());
-            urlBuilder.append("=");
-            urlBuilder.append(entry.getValue());
-        }
+        StringBuilder urlBuilder = new StringBuilder(serverUrl);
+//        for (Map.Entry<String, String> entry : fragmentParams.entrySet())
+//        {
+//            if (appendHash)
+//            {
+//                urlBuilder.append("#");
+//                appendHash = false;
+//            }
+//            else
+//            {
+//                urlBuilder.append("&");
+//            }
+//
+//            urlBuilder.append(entry.getKey());
+//            urlBuilder.append("=");
+//            urlBuilder.append(entry.getValue());
+//        }
 
         return urlBuilder.toString();
     }

@@ -35,7 +35,7 @@ public class MalleusJitsificus
      * The video file to use as input for the first participant (the sender).
      */
     private static final String INPUT_VIDEO_FILE
-        = "/home/seluser/resources/FourPeople_1280x720_60.y4m";
+        = "/home/seluser/resources/students_cif.y4m";
 
     public static final String CONFERENCES_PNAME
         = "org.jitsi.malleus.conferences";
@@ -119,8 +119,8 @@ public class MalleusJitsificus
         {
             String roomName = roomNamePrefix + i;
             JitsiMeetUrl url
-                = participants.getJitsiMeetUrl()
-                .setRoomName(roomName);
+                = participants.getJitsiMeetUrl();
+//                .setRoomName(roomName);
                 // XXX I don't remember if/why these are needed.
 //                .appendConfig("config.p2p.useStunTurn=true")
 //                .appendConfig("config.disable1On1Mode=false")
@@ -178,14 +178,14 @@ public class MalleusJitsificus
                 = new WebParticipantOptions()
                         .setFakeStreamVideoFile(INPUT_VIDEO_FILE);
 
-            if (muteVideo)
-            {
-                _url.appendConfig("config.startWithVideoMuted=true");
-            }
-            if (muteAudio)
-            {
-                _url.appendConfig("config.startWithAudioMuted=true");
-            }
+//            if (muteVideo)
+//            {
+//                _url.appendConfig("config.startWithVideoMuted=true");
+//            }
+//            if (muteAudio)
+//            {
+//                _url.appendConfig("config.startWithAudioMuted=true");
+//            }
 
             boolean useNodeTypes = Boolean.parseBoolean(System.getProperty(USE_NODE_TYPES_PNAME));
 
@@ -202,10 +202,10 @@ public class MalleusJitsificus
                 }
             }
 
-            if (region != null)
-            {
-                _url.appendConfig("config.deploymentInfo.userRegion=\"" + region + "\"");
-            }
+//            if (region != null)
+//            {
+//                _url.appendConfig("config.deploymentInfo.userRegion=\"" + region + "\"");
+//            }
 
             WebParticipant participant = participants.createParticipant("web.participant" + (i + 1), ops);
             allHungUp.register();
@@ -230,15 +230,15 @@ public class MalleusJitsificus
             }
             finally
             {
-                try
-                {
-                    participant.hangUp();
-                }
-                catch (Exception e)
-                {
-                    TestUtils.print("Exception hanging up " + participant.getName());
-                    e.printStackTrace();
-                }
+//                try
+//                {
+//                    participant.hangUp();
+//                }
+//                catch (Exception e)
+//                {
+//                    TestUtils.print("Exception hanging up " + participant.getName());
+//                    e.printStackTrace();
+//                }
                 try
                 {
                     /* There seems to be a Selenium or chrome webdriver bug where closing one parallel

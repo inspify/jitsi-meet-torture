@@ -122,6 +122,9 @@ then
     fi
 fi
 
+INSTANCE_URL='https://web-dev.inspify.io/virtualboutique/6578a5b9-0382-4ebc-a4b5-ebeb4a5408a5?mode=cockpit&source=nudge&meeting=b5d55529-4aea-4543-9b0e-ec9d17bcb209&language=en'
+#INSTANCE_URL=https://meet-ap.inspify.io/qatesting0
+
 mvn \
 -Dthreadcount=1 \
 -Dorg.jitsi.malleus.conferences=$CONFERENCES \
